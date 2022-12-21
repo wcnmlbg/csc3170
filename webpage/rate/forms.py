@@ -1,8 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
+from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError, InputRequired
 from rate.models import User
 #to link the backend databse to the front end design
+
+# class Order(FlaskForm):
+
 
 
 class Register_form(FlaskForm):
@@ -22,9 +25,9 @@ class Register_form(FlaskForm):
     
 
 
-    username = StringField(label = 'User Name:', validators=[Length(min = 2, max = 30), DataRequired()])#label will give the secondary title of the field
+    username = StringField(label = 'User Name:', validators=[Length(min = 2, max = 30), InputRequired()])#label will give the secondary title of the field
     #using the length to limit the min and max
-    email_address = StringField(label = 'Email Adress:', validators=[Email(), DataRequired()])
+    email_address = StringField(label = 'Email Adress:', validators=[Email(), InputRequired()])
     password1 = PasswordField(label = 'Password:', validators=[Length(min = 6), DataRequired()])
     password2 = PasswordField(label = 'Confirm Password:', validators=[EqualTo('password1'), DataRequired()])
     submit = SubmitField(label = 'Create Account')
@@ -33,14 +36,14 @@ class Register_form(FlaskForm):
 class Login_form(FlaskForm):
 
     username = StringField(label = 'User Name:', validators=[Length(min = 2, max = 30), DataRequired()])#label will give the secondary title of the field
-    password = PasswordField(label = 'Password:', validators=[Length(min = 6), DataRequired()])
+    password = PasswordField(label = 'Package:', validators=[Length(min = 6), DataRequired()])
     submit = SubmitField(label = 'Login')
 
 class Rate_form(FlaskForm):
     #can be changed as rated content
     Difficulty = StringField(label = 'Difficult from low to high ,5 as the highest', validators=[Length(min = 1, max = 1), DataRequired()])#label will give the secondary title of the field
     Quality = StringField(label = 'Teaching quality from low to high, 5 as the highest', validators=[Length(min = 1, max = 1), DataRequired()])
-    submit = SubmitField(label = 'Submmit Rate!')
+    submit = SubmitField(label = 'Submmit Rate form!')
 
 class Rerate_form(FlaskForm):
     #can be changed as rated content
